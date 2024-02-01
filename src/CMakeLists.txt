@@ -1,5 +1,6 @@
 
 set( PUB_HEADERS
+  ${CMAKE_BINARY_DIR}/CSXCAD_Version.h
   ContinuousStructure.h
   CSPrimitives.h
   CSProperties.h

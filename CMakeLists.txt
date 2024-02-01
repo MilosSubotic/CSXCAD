@@ -40,7 +40,16 @@ IF(EXISTS ${PROJECT_SOURCE_DIR}/.git )
   message(STATUS "Found Git repository, ${PROJECT_NAME} version tag: ${VERSION}")
 ENDIF()
 
-ADD_DEFINITIONS(-DGIT_VERSION=\"${VERSION}\")
+execute_process(
+  COMMAND "echo" "
+#ifndef CSXCAD_VERSION_H_
+#define CSXCAD_VERSION_H_
+#define _CSXCAD_VERSION_ \"${VERSION}\"
+#endif /*CSXCAD_VERSION_H_*/
+"
+  OUTPUT_FILE  "CSXCAD_Version.h"
+)
+include_directories(${CMAKE_BINARY_DIR})
 
 if (WIN32)
     ADD_DEFINITIONS( -DBUILD_CSXCAD_LIB )

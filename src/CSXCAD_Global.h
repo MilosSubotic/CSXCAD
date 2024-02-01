@@ -18,11 +18,12 @@
 #ifndef CSXCAD_GLOBAL_H_
 #define CSXCAD_GLOBAL_H_
 
+#include "CSXCAD_Version.h"
+
 #define _CSXCAD_LIB_NAME_ "CSXCAD-Lib: Continuous Structure XML - CAD"
 #define _CSXCAD_LIB_NAME_SHORT_ "CSXCAD"
 #define _CSXCAD_AUTHOR_ "Thorsten Liebig (2008-2023)"
 #define _CSXCAD_AUTHOR_MAIL_ "Thorsten.Liebig@gmx.de"
-#define _CSXCAD_VERSION_ GIT_VERSION
 #define _CSXCAD_LICENSE_ "LGPL v3"
 
 #if defined(WIN32)
@@ -43,5 +44,7 @@ enum CoordinateSystem
 {
 	CARTESIAN, CYLINDRICAL, UNDEFINED_CS
 };
+
+extern const char* CSXCAD_version;
 
 #endif /*CSXCAD_GLOBAL_H_*/
