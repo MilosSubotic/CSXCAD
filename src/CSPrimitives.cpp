@@ -139,6 +139,9 @@ void CSPrimitives::SetProperty(CSProperties *prop)
 		prop->AddPrimitive(this);
 }
 
+void CSPrimitives::SetName(const std::string name) {sName=std::string(name);}
+const std::string CSPrimitives::GetName() {return sName;}
+
 CSPrimitives::~CSPrimitives()
 {
 	if (clProperty!=NULL)
@@ -188,6 +191,7 @@ int CSPrimitives::IsInsideBox(const double *boundbox)
 
 bool CSPrimitives::Write2XML(TiXmlElement &elem, bool /*parameterised*/)
 {
+	elem.SetAttribute("Name",sName.c_str());
 	elem.SetAttribute("Priority",iPriority);
 
 	if (m_PrimCoordSystem!=UNDEFINED_CS)
@@ -205,6 +209,11 @@ bool CSPrimitives::ReadFromXML(TiXmlNode &root)
 	int help;
 	TiXmlElement* elem=root.ToElement();
 	if (elem==NULL) return false;
+	
+	const char* cHelp=elem->Attribute("Name");
+	if (cHelp!=NULL) sName=std::string(cHelp);
+	else sName.clear();
+	
 	if (elem->QueryIntAttribute("Priority",&iPriority)!=TIXML_SUCCESS) return false;
 
 	if (elem->QueryIntAttribute("CoordSystem",&help)==TIXML_SUCCESS)

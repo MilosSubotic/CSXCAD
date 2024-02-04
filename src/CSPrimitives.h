@@ -90,7 +90,12 @@ public:
 	unsigned int GetID() {return uiID;}
 	//! Change the unique ID for this primitive. This is not recommended! Be sure what you are doing!
 	void SetID(unsigned int ID) {uiID=ID;}
-
+	
+	//! Set Name for this primitive. \sa GetName
+	void SetName(const std::string name);
+	//! Get Name for this primitive. \sa SetName
+	const std::string GetName();
+	
 	//! Get the type of this primitive. \sa PrimitiveType
 	int GetType() {return Type;}
 	
@@ -195,6 +200,7 @@ protected:
 	void TransformCoords(double* Coord, bool invers, CoordinateSystem cs_in) const;
 
 	unsigned int uiID;
+	std::string sName;
 	int iPriority;
 	CoordinateSystem m_PrimCoordSystem;
 	CoordinateSystem m_MeshType;
@@ -212,5 +218,3 @@ protected:
 
 	int m_Dimension;
 };
-
-
