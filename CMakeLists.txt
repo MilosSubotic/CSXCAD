@@ -40,16 +40,18 @@ IF(EXISTS ${PROJECT_SOURCE_DIR}/.git )
   message(STATUS "Found Git repository, ${PROJECT_NAME} version tag: ${VERSION}")
 ENDIF()
 
+find_program(PYTHON "python" REQUIRED)
+IF(${PYTHON} MATCHES PYTHON-NOTFOUND)
+  message(FATAL_ERROR "Cannot find python!")
+ENDIF()
+
 execute_process(
-  COMMAND "echo" "
-#ifndef CSXCAD_VERSION_H_
-#define CSXCAD_VERSION_H_
-#define _CSXCAD_VERSION_ \"${VERSION}\"
-#endif /*CSXCAD_VERSION_H_*/
-"
-  OUTPUT_FILE  "CSXCAD_Version.h"
+  COMMAND "${PYTHON}" "${PROJECT_SOURCE_DIR}/cmake/gen_version_header.py" "${VERSION}"
+  OUTPUT_FILE "CSXCAD_Version.h"
 )
+
 include_directories(${CMAKE_BINARY_DIR})
+
 
 if (WIN32)
     ADD_DEFINITIONS( -DBUILD_CSXCAD_LIB )
