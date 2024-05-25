@@ -236,3 +236,10 @@ void CSPropDebyeMaterial::ShowPropertyStatus(std::ostream& stream)
 		stream << " Epsilon Relax Time #" << o << ":\t" << GetEpsRelaxTime(o,0) << "," << GetEpsRelaxTime(o,1) << "," << GetEpsRelaxTime(o,2) << std::endl;
 	}
 }
+
+void CSPropDebyeMaterial::SetDispersionOrder(int Order) 
+{
+	DeleteValues();
+	m_Order = Order;
+	InitValues();
+}

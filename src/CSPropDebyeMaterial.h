@@ -68,6 +68,9 @@ public:
 	//! Get the epsilon relaxation time weighting
 	double GetEpsRelaxTimeWeighted(int order, int ny, const double* coords) {return GetWeight(WeightEpsRelaxTime[order],ny,coords)*GetEpsRelaxTime(order,ny);}
 
+	//! Set the dispersion order
+	void SetDispersionOrder(int Order);
+
 	virtual void Init();
 	virtual bool Update(std::string *ErrStr=NULL);
 

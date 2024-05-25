@@ -32,6 +32,9 @@ public:
 	//! Get the dispersion order
 	virtual int GetDispersionOrder() {return m_Order;}
 
+	//! Set the dispersion order
+	virtual void SetDispersionOrder(int Order) {m_Order = Order;}
+
 	//! Get PropertyType as a xml element name \sa PropertyType and GetType
 	virtual const std::string GetTypeXMLString() const {return std::string("DispersiveMaterial");}
 
